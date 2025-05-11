@@ -17,3 +17,17 @@ module decoder_4x2 (
     assign out[2] = in[1] & ~in[0];
     assign out[3] = in[1] & in[0];
 endmodule
+
+module sr_latch (
+    input wire S,
+    input wire R,
+    output wire Q,
+    output wire Qn
+);
+    wire n1, n2;
+
+    assign n1 = ~(S & Qn);
+    assign n2 = ~(R & Q);
+    assign Q = n1;
+    assign Qn = n2;
+endmodule
